@@ -1,0 +1,1 @@
+// Handle the quizzes from local storage data

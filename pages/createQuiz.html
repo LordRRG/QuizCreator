@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a quiz</title>
+    <link rel="stylesheet" href="../css/createQuiz.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Make a Quiz</h2>
+        <form action="quizzes.html">
+            <div>
+                <label for="quizTitle">Quiz Title: </label>
+                <input type="text" name="quizTitle" id="quizTitle" minlength="5" maxlength="50">
+            </div>
+            <div>
+                <label for="quizDescription">Quiz Description: </label>
+                <input type="text" name="quizDescription" id="quizDescription">
+            </div>
+            <div>
+                <button id="addQuestion">Add question</button>
+            </div>
+            <div class="questions" id="questions">
+                <!--Questions will be added here-->
+            </div>
+            <div>
+                <button id="createQuizGame">Create Quiz!</button>
+            </div>
+        </form>
+    </div>
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <p>The field is empty. Please fill it in.</p>
+            <button id="closeModal">Close</button>
+        </div>
+    </div>
+
+    <script src="/scripts/createQuiz.js"></script>
+</body>
+</html>

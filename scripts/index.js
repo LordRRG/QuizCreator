@@ -8,3 +8,7 @@ takeQuiz.addEventListener('click', function () {
     // Redirect
     window.location.href = '/pages/quizzes.html';
 });
+
+makeQuiz.addEventListener('click', function () {
+    window.location.href = '/pages/createQuiz.html';
+});
