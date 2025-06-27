@@ -10,6 +10,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("modal");
     const closeModal = document.getElementById("closeModal");
 
+    function saveToLocal() {
+        // Save the quiz data in the local storage
+        const formData = new FormData(document.querySelector("form"));
+        const quiz = {};
+        for (let [key, value] of formData.entries()) {
+            if (!quiz[key]) {
+                quiz[key] = [];
+            }
+            quiz[key].push(value);
+        }
+        // Get existing quizzes array or start new
+        const existingQuizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
+
+        // Add the new quiz to the array
+        existingQuizzes.push(quiz);
+
+        // Save the updated quizzes array back to localStorage
+        localStorage.setItem("quizzes", JSON.stringify(existingQuizzes));
+
+        console.log("Quiz saved!", quiz);
+    }
+
     addQuestionBtn.addEventListener("click", () => {
         // Add question logic
         const questionCount = document.querySelectorAll('.question-item').length + 1;
@@ -38,18 +60,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     createQuizBtn.addEventListener("click", (e) => {
-    e.preventDefault();
+        e.preventDefault();
 
-    const isTitleEmpty = quizTitle.value.trim() === "";
-    const isDescEmpty = quizDescription.value.trim() === "";
-    const hasNoQuestions = questionsDiv.children.length === 0;
+        const isTitleEmpty = quizTitle.value.trim() === "";
+        const isDescEmpty = quizDescription.value.trim() === "";
+        const hasNoQuestions = questionsDiv.children.length === 0;
 
-    if (isTitleEmpty || isDescEmpty || hasNoQuestions) {
-        modal.classList.remove("hidden");
-    } else {
-        // ✅ Redirect to the quizzes page
-        window.location.href = "/pages/quizzes.html";
-    }
+        if (isTitleEmpty || isDescEmpty || hasNoQuestions) {
+            modal.classList.remove("hidden");
+        } else {
+            // ✅ Redirect to the quizzes page
+            saveToLocal();
+        }
     });
 
     closeModal.addEventListener("click", () => {
