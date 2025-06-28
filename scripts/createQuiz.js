@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <input type="text" name="option4[]" required>
 
             <label>Correct Answer:</label>
-            <input type="text" name="answer[]" required>
+            <input type="text" name="answer[]" id="correctAnswer" required>
         </div>
         `;
         questionsDiv.insertAdjacentHTML("beforeend", questionHTML);
@@ -65,12 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const isTitleEmpty = quizTitle.value.trim() === "";
         const isDescEmpty = quizDescription.value.trim() === "";
         const hasNoQuestions = questionsDiv.children.length === 0;
+        const correctAnswer = document.getElementById("correctAnswer");
+        const isAnswerEmpty = correctAnswer.value.trim() === "";
 
-        if (isTitleEmpty || isDescEmpty || hasNoQuestions) {
+        if (isTitleEmpty || isDescEmpty || hasNoQuestions || isAnswerEmpty) {
             modal.classList.remove("hidden");
         } else {
             // ✅ Redirect to the quizzes page
             saveToLocal();
+            window.location.href = "/pages/quizzes.html";
         }
     });
 
